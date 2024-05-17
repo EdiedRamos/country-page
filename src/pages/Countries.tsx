@@ -1,3 +1,10 @@
+import { Banner, ContentLayer } from "@/components";
+
 export const Countries = () => {
-  return <div>Countries</div>;
+  return (
+    <div>
+      <Banner />
+      <ContentLayer />
+    </div>
+  );
 };
