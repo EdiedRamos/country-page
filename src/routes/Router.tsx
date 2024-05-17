@@ -1,3 +1,4 @@
+import { Countries, Information } from "@/pages";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { URLS } from "@/utils";
@@ -9,10 +10,10 @@ export const Router = createBrowserRouter([
   },
   {
     path: URLS.countries,
-    element: <div>countries</div>,
+    element: <Countries />,
   },
   {
     path: URLS.information,
-    element: <div>information</div>,
+    element: <Information />,
   },
 ]);
