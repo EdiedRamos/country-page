@@ -2,7 +2,7 @@ import { REGIONS } from "@/utils";
 
 export const Region = () => {
   return (
-    <div className="w-[300px]">
+    <div className="max-w-[300px]">
       <p className="text-cc-gray text-cs-50 font-medium">Region</p>
       <div className="flex flex-wrap gap-3">
         {REGIONS.map((opt) => (
