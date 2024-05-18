@@ -4,3 +4,4 @@ export * from "./ContentLayer";
 export * from "./Search";
 export * from "./Select";
 export * from "./SelectOptions";
+export * from "./SortBy";
