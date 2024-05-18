@@ -5,7 +5,13 @@ export const ContentLayer = () => {
     <div className="bg-cc-black">
       <Content />
       <div>
-        <Select />
+        <Select
+          options={[
+            { id: "1", name: "Area" },
+            { id: "2", name: "Name", default: true },
+            { id: "3", name: "Population" },
+          ]}
+        />
       </div>
     </div>
   );
