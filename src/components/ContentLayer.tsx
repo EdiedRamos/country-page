@@ -1,4 +1,4 @@
-import { Content, Region, SortBy } from "@/components";
+import { Content, Region, SortBy, Status } from "@/components";
 
 export const ContentLayer = () => {
   return (
@@ -6,6 +6,7 @@ export const ContentLayer = () => {
       <Content />
       <SortBy />
       <Region />
+      <Status />
     </div>
   );
 };
