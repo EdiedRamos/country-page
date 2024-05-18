@@ -7,3 +7,4 @@ export * from "./SelectOptions";
 export * from "./SortBy";
 export * from "./Region";
 export * from "./Status";
+export * from "./CheckBox";
