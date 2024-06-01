@@ -3,3 +3,4 @@ export { default as SearchIcon } from "./Search.svg";
 
 export * from "./ExpandDown";
 export * from "./DoneRound";
+export * from "./Logo";
