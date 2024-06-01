@@ -24,8 +24,8 @@ export const CheckBox = ({ text, onChecked, onUnchecked }: CheckBox) => {
   return (
     <div className="flex items-center flex-wrap gap-2 select-none">
       <div
-        className={`flex justify-center items-center w-[30px] h-[30px] border-2 border-cc-gray rounded-md hover:cursor-pointer ${
-          isChecked ? "bg-cc-blue border-cc-blue" : ""
+        className={`flex justify-center items-center w-[30px] h-[30px] border-2 rounded-md hover:cursor-pointer ${
+          isChecked ? "bg-cc-blue border-cc-blue" : "border-cc-gray"
         }`}
         onClick={handleActive}
       >
