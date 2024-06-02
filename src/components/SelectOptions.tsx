@@ -19,7 +19,7 @@ export const SelectOptions = ({
         <div className="absolute bg-cc-black w-full rounded-lg mt-[1px] text-cc-light border-[3px] border-cc-dark">
           {options.map(({ id, name }) => (
             <div
-              className={`p-2 border-t-[3px] border-t-cc-dark first:border-none hover:bg-cc-blue overflow-hidden hover:cursor-pointer first:rounded-t-lg last:rounded-b-lg ${
+              className={`p-2 border-t-[3px] border-t-cc-dark text-cs-100 first:border-none hover:bg-cc-blue overflow-hidden hover:cursor-pointer first:rounded-t-lg last:rounded-b-lg ${
                 selectedOption.id === id ? "bg-cc-blue" : "bg-inherit"
               }`}
               onClick={() => handleSelect({ id, name })}

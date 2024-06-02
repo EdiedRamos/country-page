@@ -31,7 +31,7 @@ export const CheckBox = ({ text, onChecked, onUnchecked }: CheckBox) => {
       >
         {isChecked && <DoneRound />}
       </div>
-      <p className="text-cc-light">{text}</p>
+      <p className="text-cc-light text-cs-100">{text}</p>
     </div>
   );
 };

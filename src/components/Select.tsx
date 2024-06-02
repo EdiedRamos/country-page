@@ -17,7 +17,7 @@ export const Select = ({ options }: Select) => {
         className="flex justify-between items-center hover:cursor-pointer hover:opacity-80 text-cc-light border-[3px] p-2 rounded-lg border-cc-dark"
         onClick={handleShowOptions}
       >
-        <p>{selectedOption.name} </p>
+        <p className="text-cs-100">{selectedOption.name} </p>
         <ExpandDown className={showOptions ? "rotate-180" : ""} />
       </div>
       <SelectOptions {...select} />

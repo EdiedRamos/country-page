@@ -7,7 +7,7 @@ export const Region = () => {
       <div className="flex flex-wrap gap-3">
         {REGIONS.map((opt) => (
           <button
-            className={`p-3 text-cc-gray hover:bg-cc-dark rounded-xl ${
+            className={`p-3 text-cc-gray hover:bg-cc-dark rounded-xl text-cs-100 ${
               opt.isSelected ? "bg-cc-dark text-cc-light" : ""
             }`}
             key={opt.id}
