@@ -3,7 +3,7 @@ import { TableHeader } from "./TableHeader";
 
 export const Table = () => {
   return (
-    <table>
+    <table className="w-full">
       <TableHeader />
       <TableBody />
     </table>

@@ -10,7 +10,7 @@ export const ContentLayer = () => {
           <Region />
           <Status />
         </div>
-        <div>
+        <div className="w-full">
           <Table />
         </div>
       </div>
