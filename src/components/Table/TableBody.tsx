@@ -37,7 +37,7 @@ export const TableBody = () => {
           <td>{info.name}</td>
           <td>{info.population}</td>
           <td>{info.area}</td>
-          <td className="invisible md:visible">{info.region}</td>
+          <td className="invisible xl:visible">{info.region}</td>
         </tr>
       ))}
     </tbody>
