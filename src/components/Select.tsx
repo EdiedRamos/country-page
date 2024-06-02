@@ -12,7 +12,7 @@ export const Select = ({ options }: Select) => {
   const { selectRef, handleShowOptions, selectedOption, showOptions } = select;
 
   return (
-    <div className="relative max-w-[200px] select-none" ref={selectRef}>
+    <div className="relative w-full select-none" ref={selectRef}>
       <div
         className="flex justify-between items-center hover:cursor-pointer hover:opacity-80 text-cc-light border-[3px] p-2 rounded-lg border-cc-dark"
         onClick={handleShowOptions}
