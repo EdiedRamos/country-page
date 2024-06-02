@@ -2,7 +2,7 @@ import { Banner, ContentLayer } from "@/components";
 
 export const Countries = () => {
   return (
-    <div>
+    <div className="bg-cc-black">
       <Banner />
       <ContentLayer />
     </div>
