@@ -14,16 +14,18 @@ const Headers: HeaderItem[] = [
 export const TableHeader = () => {
   return (
     <thead className="text-cc-gray">
-      {Headers.map(({ value, classname }, index) => (
-        <td
-          key={index}
-          className={`border-b-2 border-cc-dark pb-3 text-cs-50 ${
-            classname ?? ""
-          }`}
-        >
-          {value}
-        </td>
-      ))}
+      <tr>
+        {Headers.map(({ value, classname }, index) => (
+          <th
+            key={index}
+            className={`border-b-2 border-cc-dark pb-3 text-cs-50 ${
+              classname ?? ""
+            }`}
+          >
+            {value}
+          </th>
+        ))}
+      </tr>
     </thead>
   );
 };
