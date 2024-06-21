@@ -1,4 +1,4 @@
-import { Countries, Information } from "@/pages";
+import { Countries, Information, NotFound } from "@/pages";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { URLS } from "@/utils";
@@ -15,5 +15,9 @@ export const Router = createBrowserRouter([
   {
     path: URLS.information,
     element: <Information />,
+  },
+  {
+    path: URLS.all,
+    element: <NotFound />,
   },
 ]);
