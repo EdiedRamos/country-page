@@ -7,8 +7,8 @@ const Headers: HeaderItem[] = [
   { value: "Flag" },
   { value: "Name" },
   { value: "Population" },
-  { value: "Area(km²)" },
-  { value: "Region", classname: "invisible xl:visible" },
+  { value: "Area(km²)", classname: "hidden sm:table-cell" },
+  { value: "Region", classname: "hidden xl:table-cell" },
 ];
 
 export const TableHeader = () => {

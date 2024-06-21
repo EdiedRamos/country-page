@@ -36,8 +36,8 @@ export const TableBody = () => {
           </td>
           <td>{info.name}</td>
           <td>{info.population}</td>
-          <td>{info.area}</td>
-          <td className="invisible xl:visible">{info.region}</td>
+          <td className="hidden sm:table-cell">{info.area}</td>
+          <td className="hidden xl:table-cell">{info.region}</td>
         </tr>
       ))}
     </tbody>

@@ -6,7 +6,7 @@ export const ContentLayer = () => {
       <div className="mb-9">
         <Content />
       </div>
-      <div className="flex gap-8 flex-col md:flex-row">
+      <div className="flex gap-8 flex-col lg:flex-row">
         <div className="flex flex-col gap-8 w-full md:w-[350px]">
           <SortBy />
           <Region />
