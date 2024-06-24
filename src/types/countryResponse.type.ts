@@ -4,11 +4,11 @@ interface Flags {
 }
 
 interface Languages {
-  fra: string;
+  [key: string]: string;
 }
 
 interface Currencies {
-  XPF: XPF;
+  [key: string]: XPF;
 }
 
 interface XPF {
