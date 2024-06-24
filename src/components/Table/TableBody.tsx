@@ -26,10 +26,10 @@ export const TableBody = () => {
   return (
     <tbody>
       {Countries.map((info, index) => (
-        <tr key={index} className="text-cc-light">
+        <tr key={index} className="text-cc-light text-center">
           <td>
             <img
-              className="w-[50px] h-[38px] object-cover rounded-md"
+              className="w-[50px] h-[38px] object-cover rounded-md mx-auto"
               src={info.flag}
               alt={`${info.name} flag`}
             />
