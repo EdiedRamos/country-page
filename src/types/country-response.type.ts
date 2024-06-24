@@ -34,5 +34,5 @@ export interface CountryResponse {
   population: number;
   continents: string[];
   flags: Flags;
-  borders?: string[];
+  borders: string[];
 }
