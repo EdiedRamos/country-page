@@ -18,6 +18,7 @@ interface XPF {
 
 interface Name {
   common: string;
+  official: string;
 }
 
 export interface CountryResponse {
@@ -35,4 +36,15 @@ export interface CountryResponse {
   continents: string[];
   flags: Flags;
   borders: string[];
+}
+
+export interface PreviewAndSearchingResponse {
+  name: Name;
+  independent: boolean;
+  unMember: boolean;
+  region: string;
+  subregion: string;
+  area: number;
+  population: number;
+  flags: Flags;
 }
