@@ -2,7 +2,7 @@ import type { PreviewAndSearchingResponse } from "@/types";
 import axios from "axios";
 
 class CountryAPI {
-  public async getPreviewAndSearcingData(): Promise<PreviewAndSearchingResponse | null> {
+  public async fetchPreviewAndSearcingData(): Promise<PreviewAndSearchingResponse | null> {
     try {
       // TODO: Create a base axios
       const response = await axios.get<PreviewAndSearchingResponse>(
