@@ -4,10 +4,12 @@ import { fetchCountryPreviewAndSearching } from "./countryThunks";
 
 interface CountrySlice {
   previewAndSearching: CountryPreviewAndSearchingDTO[] | null;
+  previewFiltered: CountryPreviewAndSearchingDTO[] | null;
 }
 
 const initialState: CountrySlice = {
   previewAndSearching: null,
+  previewFiltered: null,
 };
 
 const countrySlice = createSlice({

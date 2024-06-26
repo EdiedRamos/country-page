@@ -2,17 +2,12 @@ import { useAppSelector } from "@/store";
 
 export const TableBody = () => {
   const preview = useAppSelector(
-    (store) => store.countryReducer.previewAndSearching
+    (store) => store.countryReducer.previewFiltered
   );
-
-  if (!preview) {
-    // TODO: Implement this component
-    return <div>EMPTY</div>;
-  }
 
   return (
     <tbody>
-      {preview.map((info, index) => (
+      {preview?.map((info, index) => (
         <tr key={index} className="text-cc-light text-center">
           <td>
             <img

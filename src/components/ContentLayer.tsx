@@ -1,6 +1,19 @@
-import { Content, Region, SortBy, Status, Table } from "@/components";
+import {
+  Content,
+  EmptyItems,
+  Region,
+  SortBy,
+  Status,
+  Table,
+} from "@/components";
+
+import { useAppSelector } from "@/store";
 
 export const ContentLayer = () => {
+  const hasResults = useAppSelector(
+    (store) => !!store.countryReducer.previewFiltered
+  );
+
   return (
     <section className="relative container top-0 md:-top-10 bg-cc-black border-0 md:border-2 border-cc-dark p-1 sm:p-5 md:p-8 rounded-xl">
       <div className="mb-9">
@@ -12,9 +25,7 @@ export const ContentLayer = () => {
           <Region />
           <Status />
         </div>
-        <div className="w-full">
-          <Table />
-        </div>
+        <div className="w-full">{hasResults ? <Table /> : <EmptyItems />}</div>
       </div>
     </section>
   );
