@@ -1,5 +1,5 @@
 import { SELECT_OPTIONS } from "@/utils";
-import { Select } from "./Select";
+import { Select } from "./Select/Select";
 
 export const SortBy = () => {
   return (
