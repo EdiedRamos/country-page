@@ -8,20 +8,20 @@ export const TableBody = () => {
   return (
     <tbody>
       {preview?.map((info, index) => (
-        <tr key={index} className="text-cc-light text-center">
-          <td>
+        <tr key={index} className="text-cc-light">
+          <td className="w-[12%]">
             <img
-              className="w-[50px] h-[38px] object-cover rounded-md mx-auto"
+              className="w-[50px] h-[38px] object-cover rounded-md"
               src={info.flag}
               alt={`${info.name} flag`}
             />
           </td>
-          <td>{info.name}</td>
-          <td>{info.population.toLocaleString("en")}</td>
-          <td className="hidden sm:table-cell">
+          <td className="w-[22%]">{info.name}</td>
+          <td className="w-[22%]">{info.population.toLocaleString("en")}</td>
+          <td className="hidden sm:table-cell w-[22%]">
             {info.area.toLocaleString("en")}
           </td>
-          <td className="hidden xl:table-cell">{info.region}</td>
+          <td className="hidden xl:table-cell w-[22%]">{info.region}</td>
         </tr>
       ))}
     </tbody>

@@ -18,7 +18,7 @@ export const TableHeader = () => {
         {Headers.map(({ value, classname }, index) => (
           <th
             key={index}
-            className={`border-b-2 border-cc-dark pb-3 text-cs-50 ${
+            className={`border-b-2 border-cc-dark pb-3 text-cs-50 text-left ${
               classname ?? ""
             }`}
           >
