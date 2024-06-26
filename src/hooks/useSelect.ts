@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 interface useSelect {
   options: Options;
+  onSelect?: (selected: string) => void;
 }
 
 function findOption(options: Options): Option {
@@ -15,7 +16,7 @@ function findOption(options: Options): Option {
   return defaultOption[0];
 }
 
-export const useSelect = ({ options }: useSelect) => {
+export const useSelect = ({ options, onSelect }: useSelect) => {
   const selectRef = useRef<HTMLDivElement>(null);
 
   const [selectedOption, setSelectedOption] = useState<Option>(() =>
@@ -30,6 +31,7 @@ export const useSelect = ({ options }: useSelect) => {
   const handleSelect = (option: Option) => {
     setSelectedOption(option);
     setShowOptions(false);
+    onSelect && onSelect(option.name);
   };
 
   const handleOutside = (event: MouseEvent) => {

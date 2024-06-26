@@ -5,10 +5,11 @@ import { useSelect } from "@/hooks";
 
 interface Select {
   options: Options;
+  onSelect?: (selected: string) => void;
 }
 
-export const Select = ({ options }: Select) => {
-  const select = useSelect({ options });
+export const Select = ({ options, onSelect }: Select) => {
+  const select = useSelect({ options, onSelect });
   const { selectRef, handleShowOptions, selectedOption, showOptions } = select;
 
   return (
