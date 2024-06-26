@@ -17,8 +17,10 @@ export const TableBody = () => {
             />
           </td>
           <td>{info.name}</td>
-          <td>{info.population}</td>
-          <td className="hidden sm:table-cell">{info.area}</td>
+          <td>{info.population.toLocaleString("en")}</td>
+          <td className="hidden sm:table-cell">
+            {info.area.toLocaleString("en")}
+          </td>
           <td className="hidden xl:table-cell">{info.region}</td>
         </tr>
       ))}
