@@ -42,6 +42,27 @@ const countrySlice = createSlice({
 
       state.previewFiltered = filtered.length > 0 ? filtered : null;
     },
+    orderBy(state, action: PayloadAction<"area" | "name" | "population">) {
+      if (!state.previewFiltered) return;
+
+      switch (action.payload) {
+        case "area": {
+          const sorted = countrySort(state.previewFiltered).byArea();
+          state.previewFiltered = sorted;
+          break;
+        }
+        case "name": {
+          const sorted = countrySort(state.previewFiltered).byName();
+          state.previewFiltered = sorted;
+          break;
+        }
+        case "population": {
+          const sorted = countrySort(state.previewFiltered).byPopulation();
+          state.previewFiltered = sorted;
+          break;
+        }
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(
