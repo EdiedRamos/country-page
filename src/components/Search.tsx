@@ -1,9 +1,12 @@
 import { ChangeEvent, useEffect, useState } from "react";
+import { countryActions, useAppDispatch } from "@/store";
 
 import { SearchIcon } from "@/assets";
 
 export const Search = () => {
   const [searchTarget, setSearchTarget] = useState<string>("");
+
+  const dispatch = useAppDispatch();
 
   const handleSearchTargetChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchTarget(event.target.value);
@@ -11,11 +14,12 @@ export const Search = () => {
 
   useEffect(() => {
     const debounceId = setTimeout(() => {
-      console.log(`Searching: ${searchTarget}`);
+      console.log("✔️", searchTarget);
+      dispatch(countryActions.searchBy(searchTarget));
     }, 500);
 
     return () => clearTimeout(debounceId);
-  }, [searchTarget]);
+  }, [searchTarget, dispatch]);
 
   return (
     <div className="relative">

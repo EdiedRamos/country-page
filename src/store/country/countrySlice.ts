@@ -1,5 +1,7 @@
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
 import { CountryPreviewAndSearchingDTO } from "@/dtos";
-import { createSlice } from "@reduxjs/toolkit";
+import { countrySearch } from "./countryFilters";
 import { fetchCountryPreviewAndSearching } from "./countryThunks";
 
 interface CountrySlice {
@@ -15,7 +17,32 @@ const initialState: CountrySlice = {
 const countrySlice = createSlice({
   name: "country",
   initialState,
-  reducers: {},
+  reducers: {
+    searchBy(state, action: PayloadAction<string>) {
+      if (!state.previewAndSearching) {
+        return;
+      }
+
+      const target = action.payload.toLowerCase();
+
+      const isInvalidTarget = target.length > 0 && target.trim().length === 0;
+
+      if (isInvalidTarget) {
+        return;
+      }
+
+      const search = countrySearch(target);
+
+      const filtered = state.previewAndSearching.filter(
+        (country) =>
+          search.byName(country) ||
+          search.byRegion(country) ||
+          search.bySubregion(country)
+      );
+
+      state.previewFiltered = filtered.length > 0 ? filtered : null;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(
       fetchCountryPreviewAndSearching.fulfilled,
@@ -27,5 +54,5 @@ const countrySlice = createSlice({
   },
 });
 
-export const actions = countrySlice.actions;
+export const countryActions = countrySlice.actions;
 export default countrySlice.reducer;
