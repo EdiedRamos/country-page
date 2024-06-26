@@ -8,6 +8,7 @@ export const previewAndSearchingMapper = (
     data.name.common,
     data.independent,
     data.unMember,
+    data.region,
     data.subregion,
     data.area,
     data.population,

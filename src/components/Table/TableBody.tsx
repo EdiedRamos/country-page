@@ -1,31 +1,18 @@
-const Countries = [
-  {
-    flag: "https://flagcdn.com/w80/cn.png",
-    name: "China",
-    population: "1,402,112,000",
-    area: "9,706,961",
-    region: "Asia",
-  },
-  {
-    flag: "https://flagcdn.com/w80/in.png",
-    name: "India",
-    population: "1,439,323,776",
-    area: "3,287,590",
-    region: "Asia",
-  },
-  {
-    flag: "https://flagcdn.com/w80/us.png",
-    name: "United States",
-    population: "329,484,123",
-    area: "9,372,610",
-    region: "Americas",
-  },
-];
+import { useAppSelector } from "@/store";
 
 export const TableBody = () => {
+  const preview = useAppSelector(
+    (store) => store.countryReducer.previewAndSearching
+  );
+
+  if (!preview) {
+    // TODO: Implement this component
+    return <div>EMPTY</div>;
+  }
+
   return (
     <tbody>
-      {Countries.map((info, index) => (
+      {preview.map((info, index) => (
         <tr key={index} className="text-cc-light text-center">
           <td>
             <img

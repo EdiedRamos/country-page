@@ -3,6 +3,7 @@ export class CountryPreviewAndSearchingDTO {
     public name: string,
     public isIndependent: boolean,
     public isUNMember: boolean,
+    public region: string,
     public subregion: string,
     public area: number,
     public population: number,
