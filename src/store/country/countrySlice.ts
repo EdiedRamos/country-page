@@ -21,7 +21,7 @@ const countrySlice = createSlice({
       fetchCountryPreviewAndSearching.fulfilled,
       (state, action) => {
         state.previewAndSearching = action.payload;
-        console.log("async reducer", action.type);
+        state.previewFiltered = action.payload;
       }
     );
   },
