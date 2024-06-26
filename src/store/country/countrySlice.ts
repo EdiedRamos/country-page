@@ -1,8 +1,12 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { countrySearch, countrySort } from "./countryFilters";
+import {
+  SortOptions,
+  countrySearch,
+  countrySort,
+  fetchCountryPreviewAndSearching,
+} from "@/store";
 
 import { CountryPreviewAndSearchingDTO } from "@/dtos";
-import { fetchCountryPreviewAndSearching } from "./countryThunks";
 
 interface CountrySlice {
   previewAndSearching: CountryPreviewAndSearchingDTO[] | null;
@@ -42,7 +46,7 @@ const countrySlice = createSlice({
 
       state.previewFiltered = filtered.length > 0 ? filtered : null;
     },
-    orderBy(state, action: PayloadAction<"area" | "name" | "population">) {
+    orderBy(state, action: PayloadAction<SortOptions>) {
       if (!state.previewFiltered) return;
 
       switch (action.payload) {
