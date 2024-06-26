@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { countrySearch, countrySort } from "./countryFilters";
 
 import { CountryPreviewAndSearchingDTO } from "@/dtos";
-import { countrySearch } from "./countryFilters";
 import { fetchCountryPreviewAndSearching } from "./countryThunks";
 
 interface CountrySlice {
@@ -48,7 +48,9 @@ const countrySlice = createSlice({
       fetchCountryPreviewAndSearching.fulfilled,
       (state, action) => {
         state.previewAndSearching = action.payload;
-        state.previewFiltered = action.payload;
+        state.previewFiltered = action.payload
+          ? countrySort(action.payload).byPopulation()
+          : null;
       }
     );
   },
