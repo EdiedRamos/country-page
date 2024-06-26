@@ -7,8 +7,8 @@ export const TableBody = () => {
 
   return (
     <tbody>
-      {preview?.map((info, index) => (
-        <tr key={index} className="text-cc-light">
+      {preview?.map((info) => (
+        <tr key={info.name} className="text-cc-light">
           <td className="w-[12%]">
             <img
               className="w-[50px] h-[38px] object-cover rounded-md"
