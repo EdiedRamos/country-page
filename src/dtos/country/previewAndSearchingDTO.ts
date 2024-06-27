@@ -9,7 +9,7 @@ export interface CountryPreviewAndSearchingDTO {
   flag: string;
 }
 
-export function CountryPreviewAndSearchingDTO(
+export function createCountryPreviewAndSearchingDTO(
   name: string,
   isIndependent: boolean,
   isUNMember: boolean,
