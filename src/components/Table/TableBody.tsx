@@ -1,13 +1,13 @@
-import { useAppSelector } from "@/store";
+import { CountryPreviewAndSearchingDTO } from "@/dtos";
 
-export const TableBody = () => {
-  const preview = useAppSelector(
-    (store) => store.countryReducer.previewFiltered
-  );
+interface Props {
+  countries: CountryPreviewAndSearchingDTO[];
+}
 
+export const TableBody = ({ countries }: Props) => {
   return (
     <tbody>
-      {preview?.map((info) => (
+      {countries.map((info) => (
         <tr key={info.name} className="text-cc-light">
           <td className="w-[12%]">
             <img
