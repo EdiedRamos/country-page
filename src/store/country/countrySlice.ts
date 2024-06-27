@@ -38,6 +38,7 @@ const countrySlice = createSlice({
       if (!state.previewAndSearching) return;
 
       state.filters.search = action.payload;
+
       state.previewFiltered = applyFilters(
         state.previewAndSearching,
         state.filters
@@ -48,6 +49,7 @@ const countrySlice = createSlice({
       if (!state.previewAndSearching) return;
 
       state.filters.sort = action.payload;
+
       state.previewFiltered = applyFilters(
         state.previewAndSearching,
         state.filters
@@ -58,6 +60,25 @@ const countrySlice = createSlice({
       if (!state.previewAndSearching) return;
 
       state.filters.region = filterRegions(action.payload);
+
+      state.previewFiltered = applyFilters(
+        state.previewAndSearching,
+        state.filters
+      );
+    },
+
+    setStatusFilter(
+      state,
+      action: PayloadAction<{ context: "UN" | "IN"; state: boolean }>
+    ) {
+      if (!state.previewAndSearching) return;
+
+      if (action.payload.context === "IN") {
+        state.filters.status.isIndependent = action.payload.state;
+      } else {
+        state.filters.status.isUNMember = action.payload.state;
+      }
+
       state.previewFiltered = applyFilters(
         state.previewAndSearching,
         state.filters

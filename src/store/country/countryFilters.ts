@@ -2,6 +2,7 @@ import {
   Filters,
   Region,
   SortOptions,
+  StatusFilter,
   filterRegions,
   isRegion,
 } from "./countryUtils";
@@ -57,6 +58,13 @@ export const countryFilter = (countries: CountryPreviewAndSearchingDTO[]) => ({
       return regions.includes(country.region.toLowerCase());
     });
   },
+  byStatus: (status: StatusFilter) => {
+    return countries.filter((country) => {
+      if (status.isUNMember && country.isUNMember) return true;
+      if (status.isIndependent && country.isIndependent) return true;
+      return false;
+    });
+  },
 });
 
 function searchBy(
@@ -110,6 +118,14 @@ function filterBy(
   return countryFilter(countries).byRegions(regions);
 }
 
+function statusFilter(
+  countries: CountryPreviewAndSearchingDTO[],
+  status: StatusFilter
+): CountryPreviewAndSearchingDTO[] {
+  if (!status.isIndependent && !status.isUNMember) return countries;
+  return countryFilter(countries).byStatus(status);
+}
+
 export function applyFilters(
   countries: CountryPreviewAndSearchingDTO[],
   filters: Filters
@@ -117,5 +133,6 @@ export function applyFilters(
   const searchedBy = searchBy(countries, filters.search);
   const sortedBy = sortBy(searchedBy, filters.sort);
   const filtered = filterBy(sortedBy, filters.region);
-  return filtered;
+  const status = statusFilter(filtered, filters.status);
+  return status;
 }

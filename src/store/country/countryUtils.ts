@@ -1,11 +1,13 @@
+export interface StatusFilter {
+  isUNMember: boolean;
+  isIndependent: boolean;
+}
+
 export interface Filters {
   search: string;
   sort: SortOptions;
   region: Region[];
-  status: {
-    isUNMember: boolean;
-    isIndependent: boolean;
-  };
+  status: StatusFilter;
 }
 
 export type SortOptions = "area" | "name" | "population";
