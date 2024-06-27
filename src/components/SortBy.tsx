@@ -9,7 +9,7 @@ export const SortBy = () => {
   const onSelect = (value: string): void => {
     value = value.toLowerCase();
     if (isSortOption(value)) {
-      dispatch(countryActions.orderBy(value));
+      dispatch(countryActions.setSortBy(value));
     }
   };
 

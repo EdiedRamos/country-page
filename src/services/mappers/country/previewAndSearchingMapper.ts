@@ -4,7 +4,7 @@ import { type PreviewAndSearchingResponse } from "@/types";
 export const previewAndSearchingMapper = (
   data: PreviewAndSearchingResponse
 ): CountryPreviewAndSearchingDTO => {
-  return new CountryPreviewAndSearchingDTO(
+  return CountryPreviewAndSearchingDTO(
     data.name.common,
     data.independent,
     data.unMember,

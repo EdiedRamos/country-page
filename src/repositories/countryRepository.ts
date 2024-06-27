@@ -9,9 +9,9 @@ class CountryRepository {
     const previewAndSearchingResponse =
       await countryAPI.fetchPreviewAndSearcingData();
     if (!previewAndSearchingResponse) return null;
-    return previewAndSearchingResponse.map((previewAndSearching) => ({
-      ...previewAndSearchingMapper(previewAndSearching),
-    }));
+    return previewAndSearchingResponse.map((previewAndSearching) =>
+      previewAndSearchingMapper(previewAndSearching)
+    );
   }
 }
 

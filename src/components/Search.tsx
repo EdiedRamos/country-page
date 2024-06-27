@@ -14,8 +14,7 @@ export const Search = () => {
 
   useEffect(() => {
     const debounceId = setTimeout(() => {
-      console.log("✔️", searchTarget);
-      dispatch(countryActions.searchBy(searchTarget));
+      dispatch(countryActions.setSearch(searchTarget));
     }, 500);
 
     return () => clearTimeout(debounceId);

@@ -1,3 +1,13 @@
+export interface Filters {
+  search: string;
+  sort: SortOptions;
+  region: Region[];
+  status: {
+    isUNMember: boolean;
+    isIndependent: boolean;
+  };
+}
+
 export type SortOptions = "area" | "name" | "population";
 export type Region =
   | "americas"
@@ -24,8 +34,9 @@ export function isRegion(value: string): value is Region {
   return validRegions.includes(value.toLowerCase());
 }
 
-export function filterRegions(regions: string[]): Region[] | null {
-  const validRegions = regions.filter(isRegion);
-  if (validRegions.length === 0) return null;
+export function filterRegions(regions: string[]): Region[] {
+  const validRegions = regions
+    .map((value) => value.toLowerCase())
+    .filter(isRegion);
   return validRegions;
 }

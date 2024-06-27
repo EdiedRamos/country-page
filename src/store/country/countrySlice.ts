@@ -1,79 +1,132 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
+  Filters,
+  Region,
   SortOptions,
   countryFilter,
   countrySearch,
   countrySort,
   fetchCountryPreviewAndSearching,
+  filterRegions,
 } from "@/store";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { CountryPreviewAndSearchingDTO } from "@/dtos";
 
 interface CountrySlice {
   previewAndSearching: CountryPreviewAndSearchingDTO[] | null;
   previewFiltered: CountryPreviewAndSearchingDTO[] | null;
+  filters: Filters;
 }
 
 const initialState: CountrySlice = {
   previewAndSearching: null,
   previewFiltered: null,
+  filters: {
+    search: "",
+    region: [],
+    sort: "population",
+    status: {
+      isIndependent: false,
+      isUNMember: false,
+    },
+  },
 };
+
+// * TEMPORARY HERE
+function searchBy(
+  countries: CountryPreviewAndSearchingDTO[],
+  searchTarget: string
+): CountryPreviewAndSearchingDTO[] {
+  const target = searchTarget.toLowerCase();
+
+  const isInvalidTarget = target.trim().length === 0;
+
+  if (isInvalidTarget) {
+    return countries;
+  }
+
+  const search = countrySearch(target);
+
+  const filtered = countries.filter(
+    (country) =>
+      search.byName(country) ||
+      search.byRegion(country) ||
+      search.bySubregion(country)
+  );
+
+  return filtered;
+}
+
+function sortBy(
+  countries: CountryPreviewAndSearchingDTO[],
+  option: SortOptions
+): CountryPreviewAndSearchingDTO[] {
+  switch (option) {
+    case "area": {
+      const sorted = countrySort(countries).byArea();
+      return sorted;
+    }
+    case "name": {
+      const sorted = countrySort(countries).byName();
+      return sorted;
+    }
+    case "population": {
+      const sorted = countrySort(countries).byPopulation();
+      return sorted;
+    }
+  }
+}
+
+function filterBy(
+  countries: CountryPreviewAndSearchingDTO[],
+  regions: Region[]
+): CountryPreviewAndSearchingDTO[] {
+  return countryFilter(countries).byRegions(regions);
+}
+
+function applyFilters(
+  countries: CountryPreviewAndSearchingDTO[],
+  filters: Filters
+): CountryPreviewAndSearchingDTO[] {
+  const searchedBy = searchBy(countries, filters.search);
+  const sortedBy = sortBy(searchedBy, filters.sort);
+  const filtered = filterBy(sortedBy, filters.region);
+  return filtered;
+}
+// * END OF TEMPORARY HERE
 
 const countrySlice = createSlice({
   name: "country",
   initialState,
   reducers: {
-    searchBy(state, action: PayloadAction<string>) {
-      if (!state.previewAndSearching) {
-        return;
-      }
-
-      const target = action.payload.toLowerCase();
-
-      const isInvalidTarget = target.length > 0 && target.trim().length === 0;
-
-      if (isInvalidTarget) {
-        return;
-      }
-
-      const search = countrySearch(target);
-
-      const filtered = state.previewAndSearching.filter(
-        (country) =>
-          search.byName(country) ||
-          search.byRegion(country) ||
-          search.bySubregion(country)
-      );
-
-      state.previewFiltered = filtered.length > 0 ? filtered : null;
-    },
-    orderBy(state, action: PayloadAction<SortOptions>) {
-      if (!state.previewFiltered) return;
-
-      switch (action.payload) {
-        case "area": {
-          const sorted = countrySort(state.previewFiltered).byArea();
-          state.previewFiltered = sorted;
-          break;
-        }
-        case "name": {
-          const sorted = countrySort(state.previewFiltered).byName();
-          state.previewFiltered = sorted;
-          break;
-        }
-        case "population": {
-          const sorted = countrySort(state.previewFiltered).byPopulation();
-          state.previewFiltered = sorted;
-          break;
-        }
-      }
-    },
-    filterBy(state, action: PayloadAction<string[]>) {
+    setSearch(state, action: PayloadAction<string>) {
       if (!state.previewAndSearching) return;
-      const filtered = countryFilter(state.previewAndSearching).byRegions(
-        action.payload
+
+      state.filters.search = action.payload;
+      state.previewFiltered = applyFilters(
+        state.previewAndSearching,
+        state.filters
       );
-      state.previewFiltered = filtered ? filtered : state.previewAndSearching;
+    },
+
+    setSortBy(state, action: PayloadAction<SortOptions>) {
+      if (!state.previewAndSearching) return;
+
+      state.filters.sort = action.payload;
+      state.previewFiltered = applyFilters(
+        state.previewAndSearching,
+        state.filters
+      );
+    },
+
+    setRegionsFilter(state, action: PayloadAction<string[]>) {
+      if (!state.previewAndSearching) return;
+
+      state.filters.region = filterRegions(action.payload);
+      state.previewFiltered = applyFilters(
+        state.previewAndSearching,
+        state.filters
+      );
     },
   },
   extraReducers: (builder) => {

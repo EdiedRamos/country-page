@@ -22,7 +22,7 @@ export const useRegion = () => {
     const filterRegions = regions
       .filter((region) => region.isSelected)
       .map((region) => region.value);
-    dispatch(countryActions.filterBy(filterRegions));
+    dispatch(countryActions.setRegionsFilter(filterRegions));
   }, [regions, dispatch]);
 
   return {

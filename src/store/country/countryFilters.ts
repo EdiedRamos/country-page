@@ -45,10 +45,10 @@ export const countrySort = (countries: CountryPreviewAndSearchingDTO[]) => ({
 export const countryFilter = (countries: CountryPreviewAndSearchingDTO[]) => ({
   byRegions: (regions: string[]) => {
     const validRegions = filterRegions(regions);
-    if (!validRegions) return null;
+    if (validRegions.length === 0) return countries;
     return countries.filter((country) => {
       if (!isRegion(country.region)) return false;
-      return regions.includes(country.region);
+      return regions.includes(country.region.toLowerCase());
     });
   },
 });
