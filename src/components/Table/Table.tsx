@@ -5,6 +5,8 @@ import { TableHeader } from "./TableHeader";
 import { useAppSelector } from "@/store";
 import { usePagination } from "@/hooks";
 
+const LIMIT = 10;
+
 export const Table = () => {
   const preview = useAppSelector(
     (store) => store.countryReducer.previewFiltered
@@ -14,7 +16,7 @@ export const Table = () => {
     usePagination<CountryPreviewAndSearchingDTO>({
       data: preview ?? [],
       offset: 0,
-      limit: 10,
+      limit: LIMIT,
     });
 
   return (
@@ -23,11 +25,13 @@ export const Table = () => {
         <TableHeader />
         <TableBody countries={paginated} />
       </table>
-      <Paginator
-        currentPage={currentPage}
-        onNext={onNext}
-        onPrevious={onPrevious}
-      />
+      {(preview ?? []).length > LIMIT && (
+        <Paginator
+          currentPage={currentPage}
+          onNext={onNext}
+          onPrevious={onPrevious}
+        />
+      )}
     </section>
   );
 };
