@@ -1,18 +1,7 @@
-import { REGIONS } from "@/utils";
-import { useState } from "react";
+import { useRegion } from "@/hooks";
 
 export const Region = () => {
-  const [regions, setRegions] = useState<typeof REGIONS>(REGIONS);
-
-  const handleSelect = (id: string): void => {
-    setRegions((prev) =>
-      prev.map((region) =>
-        region.id === id
-          ? { ...region, isSelected: !region.isSelected }
-          : region
-      )
-    );
-  };
+  const { regions, handleSelect } = useRegion();
 
   return (
     <div className="">
