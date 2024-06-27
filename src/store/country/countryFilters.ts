@@ -1,3 +1,5 @@
+import { filterRegions, isRegion } from "./countryUtils";
+
 import { CountryPreviewAndSearchingDTO } from "@/dtos";
 
 export const countrySearch = (target: string) => ({
@@ -38,4 +40,15 @@ export const countrySort = (countries: CountryPreviewAndSearchingDTO[]) => ({
         ? countryA.population - countryB.population
         : countryB.population - countryA.population
     ),
+});
+
+export const countryFilter = (countries: CountryPreviewAndSearchingDTO[]) => ({
+  byRegions: (regions: string[]) => {
+    const validRegions = filterRegions(regions);
+    if (!validRegions) return null;
+    return countries.filter((country) => {
+      if (!isRegion(country.region)) return false;
+      return regions.includes(country.region);
+    });
+  },
 });

@@ -1,6 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import {
   SortOptions,
+  countryFilter,
   countrySearch,
   countrySort,
   fetchCountryPreviewAndSearching,
@@ -66,6 +67,13 @@ const countrySlice = createSlice({
           break;
         }
       }
+    },
+    filterBy(state, action: PayloadAction<string[]>) {
+      if (!state.previewAndSearching) return;
+      const filtered = countryFilter(state.previewAndSearching).byRegions(
+        action.payload
+      );
+      state.previewFiltered = filtered ? filtered : state.previewAndSearching;
     },
   },
   extraReducers: (builder) => {

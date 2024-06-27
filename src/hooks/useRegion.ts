@@ -1,9 +1,12 @@
+import { countryActions, useAppDispatch } from "@/store";
 import { useEffect, useState } from "react";
 
 import { REGIONS } from "@/utils";
 
 export const useRegion = () => {
   const [regions, setRegions] = useState<typeof REGIONS>(REGIONS);
+
+  const dispatch = useAppDispatch();
 
   const handleSelect = (id: string): void => {
     setRegions((prev) =>
@@ -19,8 +22,8 @@ export const useRegion = () => {
     const filterRegions = regions
       .filter((region) => region.isSelected)
       .map((region) => region.value);
-    console.log(filterRegions);
-  }, [regions]);
+    dispatch(countryActions.filterBy(filterRegions));
+  }, [regions, dispatch]);
 
   return {
     regions,
