@@ -1,4 +1,10 @@
-import { filterRegions, isRegion } from "./countryUtils";
+import {
+  Filters,
+  Region,
+  SortOptions,
+  filterRegions,
+  isRegion,
+} from "./countryUtils";
 
 import { CountryPreviewAndSearchingDTO } from "@/dtos";
 
@@ -52,3 +58,64 @@ export const countryFilter = (countries: CountryPreviewAndSearchingDTO[]) => ({
     });
   },
 });
+
+function searchBy(
+  countries: CountryPreviewAndSearchingDTO[],
+  searchTarget: string
+): CountryPreviewAndSearchingDTO[] {
+  const target = searchTarget.toLowerCase();
+
+  const isInvalidTarget = target.trim().length === 0;
+
+  if (isInvalidTarget) {
+    return countries;
+  }
+
+  const search = countrySearch(target);
+
+  const filtered = countries.filter(
+    (country) =>
+      search.byName(country) ||
+      search.byRegion(country) ||
+      search.bySubregion(country)
+  );
+
+  return filtered;
+}
+
+function sortBy(
+  countries: CountryPreviewAndSearchingDTO[],
+  option: SortOptions
+): CountryPreviewAndSearchingDTO[] {
+  switch (option) {
+    case "area": {
+      const sorted = countrySort(countries).byArea();
+      return sorted;
+    }
+    case "name": {
+      const sorted = countrySort(countries).byName();
+      return sorted;
+    }
+    case "population": {
+      const sorted = countrySort(countries).byPopulation();
+      return sorted;
+    }
+  }
+}
+
+function filterBy(
+  countries: CountryPreviewAndSearchingDTO[],
+  regions: Region[]
+): CountryPreviewAndSearchingDTO[] {
+  return countryFilter(countries).byRegions(regions);
+}
+
+export function applyFilters(
+  countries: CountryPreviewAndSearchingDTO[],
+  filters: Filters
+): CountryPreviewAndSearchingDTO[] {
+  const searchedBy = searchBy(countries, filters.search);
+  const sortedBy = sortBy(searchedBy, filters.sort);
+  const filtered = filterBy(sortedBy, filters.region);
+  return filtered;
+}
