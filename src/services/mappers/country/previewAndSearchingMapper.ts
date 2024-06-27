@@ -1,10 +1,13 @@
-import { CountryPreviewAndSearchingDTO } from "@/dtos";
+import {
+  CountryPreviewAndSearchingDTO,
+  createCountryPreviewAndSearchingDTO,
+} from "@/dtos";
 import { type PreviewAndSearchingResponse } from "@/types";
 
 export const previewAndSearchingMapper = (
   data: PreviewAndSearchingResponse
 ): CountryPreviewAndSearchingDTO => {
-  return CountryPreviewAndSearchingDTO(
+  return createCountryPreviewAndSearchingDTO(
     data.name.common,
     data.independent,
     data.unMember,
