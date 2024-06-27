@@ -19,6 +19,10 @@ export const usePagination = <T>({ data, offset, limit }: Props<T>) => {
     setPaginated(data.slice(curOffset, curOffset + limit));
   }, [data, curOffset, limit]);
 
+  useEffect(() => {
+    if (curOffset >= data.length) setCurOffset(0);
+  }, [data, curOffset]);
+
   return {
     paginated,
     currentPage: Math.floor(curOffset / limit) + 1,
