@@ -21,7 +21,7 @@ export const Region = () => {
         {regions.map((opt) => (
           <button
             onClick={() => handleSelect(opt.id)}
-            className={`p-3 text-cc-gray hover:bg-cc-dark rounded-xl text-cs-100 ${
+            className={`py-2 px-3 text-cc-gray hover:bg-cc-dark rounded-xl text-cs-100 ${
               opt.isSelected ? "bg-cc-dark text-cc-light" : ""
             }`}
             key={opt.id}
