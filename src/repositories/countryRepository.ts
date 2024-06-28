@@ -21,7 +21,7 @@ class CountryRepository {
   ): Promise<CountryInformationDTO | null> {
     const countryInformation = await countryAPI.fetchCountryByName(countryName);
     if (!countryInformation) return null;
-    return countryInformationMapper(countryInformation);
+    return countryInformationMapper(countryInformation[0]);
   }
 }
 

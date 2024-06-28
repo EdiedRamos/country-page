@@ -1,8 +1,28 @@
+import { useEffect, useState } from "react";
+
+import { CountryInformationDTO } from "@/dtos";
+import { EmptyItems } from "../shared";
 import { InfoDetail } from "./InfoDetail";
 import { NeighbouringCountries } from "./NeighbouringCountries";
 import { SpecialInfo } from "./SpecialInfo";
+import { countryRepository } from "@/repositories/countryRepository";
+import { useParams } from "react-router";
 
 export const InformationLayer = () => {
+  const [country, setCountry] = useState<CountryInformationDTO | null>(null);
+
+  const params = useParams();
+
+  useEffect(() => {
+    const countryName = params.country;
+    if (!countryName) return;
+    countryRepository
+      .getCountryInformation(countryName)
+      .then((data) => setCountry(data));
+  }, [params]);
+
+  if (!country) return <EmptyItems />;
+
   return (
     <section className="relative max-w-[720px] top-0 md:-top-16 bg-cc-black border-0 md:border-2 border-cc-dark rounded-xl shadow-xl mx-auto">
       <div className="mx-auto max-w-[260px] h-[196px] -mt-[48px]">
@@ -13,7 +33,7 @@ export const InformationLayer = () => {
         />
       </div>
       <div className="mt-8 text-cc-light text-center">
-        <p className="text-3xl font-medium">India</p>
+        <p className="text-3xl font-medium">{country?.name.common}</p>
         <p className="mt-2">Republic of India</p>
       </div>
       <div className="flex flex-wrap justify-center gap-10 mt-10 text-cc-light">

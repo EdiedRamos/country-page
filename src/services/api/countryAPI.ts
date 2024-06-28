@@ -1,4 +1,7 @@
-import type { CountryInformation, PreviewAndSearchingResponse } from "@/types";
+import type {
+  CountryInformationResponse,
+  PreviewAndSearchingResponse,
+} from "@/types";
 
 import { axiosInstance } from "@/utils";
 
@@ -18,9 +21,9 @@ class CountryAPI {
 
   public async fetchCountryByName(
     name: string
-  ): Promise<CountryInformation | null> {
+  ): Promise<CountryInformationResponse[] | null> {
     try {
-      const response = await axiosInstance.get<CountryInformation>(
+      const response = await axiosInstance.get<CountryInformationResponse[]>(
         `name/${name}?fields=name,flags,subregion,area,population,languages,currencies,continents,borders,capital`
       );
       return response.data;

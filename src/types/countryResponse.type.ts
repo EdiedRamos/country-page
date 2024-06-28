@@ -49,7 +49,7 @@ export interface PreviewAndSearchingResponse {
   flags: Flags;
 }
 
-export interface CountryInformation {
+export interface CountryInformationResponse {
   name: Name;
   capital: string[];
   flags: Flags;

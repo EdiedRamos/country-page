@@ -1,15 +1,13 @@
-import type { CountryInformation } from "@/types";
 import type { CountryInformationDTO } from "@/dtos";
+import type { CountryInformationResponse } from "@/types";
 
 export const countryInformationMapper = (
-  data: CountryInformation
+  data: CountryInformationResponse
 ): CountryInformationDTO => {
-  const currencies: string[] = Object.entries(data.currencies).map(
+  const currencies = Object.entries(data.currencies).map(
     (info) => info[1].name
   );
-  const languages: string[] = Object.entries(data.languages).map(
-    (info) => info[1]
-  );
+  const languages = Object.entries(data.languages).map((info) => info[1]);
 
   return {
     name: data.name,
