@@ -1,6 +1,6 @@
 export interface CountryInformationDTO {
   name: string;
-  capital: string;
+  capital: string[];
   flag: string;
   currencies: string[];
   subregion: string;
@@ -13,7 +13,7 @@ export interface CountryInformationDTO {
 
 export function createCountryInformationDTO(
   name: string,
-  capital: string,
+  capital: string[],
   flag: string,
   currencies: string[],
   subregion: string,
