@@ -48,3 +48,16 @@ export interface PreviewAndSearchingResponse {
   population: number;
   flags: Flags;
 }
+
+export interface CountryInformation {
+  name: Name;
+  capital: string[];
+  flags: Flags;
+  currencies: Currencies;
+  subregion: string;
+  languages: Languages;
+  borders: string[];
+  area: number;
+  population: number;
+  continents: string[];
+}
