@@ -61,3 +61,8 @@ export interface CountryInformationResponse {
   population: number;
   continents: string[];
 }
+
+export interface CountryPreviewResponse {
+  name: Name;
+  flags: Flags;
+}
