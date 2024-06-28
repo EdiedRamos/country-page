@@ -1,5 +1,5 @@
 export * from "./Banner";
-export * from "./ContentLayer";
+export * from "./Countries/ContentLayer";
 export * from "./Countries/CheckBox";
 export * from "./Countries/Content";
 export * from "./Countries/Region";
@@ -10,4 +10,4 @@ export * from "./EmptyItems";
 export * from "./Paginator/Paginator";
 export * from "./Select/Select";
 export * from "./Select/SelectOptions";
-export * from "./Table";
+export * from "./Countries/Table";
