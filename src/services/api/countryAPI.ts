@@ -1,5 +1,6 @@
 import type {
   CountryInformationResponse,
+  CountryPreviewResponse,
   PreviewAndSearchingResponse,
 } from "@/types";
 
@@ -25,6 +26,19 @@ class CountryAPI {
     try {
       const response = await axiosInstance.get<CountryInformationResponse[]>(
         `name/${name}?fields=name,flags,subregion,area,population,languages,currencies,continents,borders,capital`
+      );
+      return response.data;
+    } catch {
+      return null;
+    }
+  }
+
+  public async fetchCountriesByBorders(
+    borders: string
+  ): Promise<CountryPreviewResponse[] | null> {
+    try {
+      const response = await axiosInstance.get<CountryPreviewResponse[]>(
+        `alpha?codes=${borders}&fields=name,flags`
       );
       return response.data;
     } catch {
