@@ -15,7 +15,7 @@ export const ContentLayer = () => {
   );
 
   return (
-    <section className="relative container top-0 md:-top-10 bg-cc-black border-0 md:border-2 border-cc-dark p-1 sm:p-5 md:p-8 rounded-xl">
+    <section className="relative container top-0 md:-top-10 bg-cc-black border-0 md:border-2 border-cc-dark p-1 sm:p-5 md:p-8 rounded-xl shadow-xl">
       <div className="mb-9">
         <Content />
       </div>
