@@ -1,5 +1,10 @@
+interface Name {
+  common: string;
+  official: string;
+}
+
 export interface CountryInformationDTO {
-  name: string;
+  name: Name;
   capital: string[];
   flag: string;
   currencies: string[];
@@ -12,7 +17,7 @@ export interface CountryInformationDTO {
 }
 
 export function createCountryInformationDTO(
-  name: string,
+  name: Name,
   capital: string[],
   flag: string,
   currencies: string[],
