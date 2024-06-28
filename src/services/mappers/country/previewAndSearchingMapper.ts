@@ -1,20 +1,17 @@
-import {
-  CountryPreviewAndSearchingDTO,
-  createCountryPreviewAndSearchingDTO,
-} from "@/dtos";
+import { CountryPreviewAndSearchingDTO } from "@/dtos";
 import { type PreviewAndSearchingResponse } from "@/types";
 
 export const previewAndSearchingMapper = (
   data: PreviewAndSearchingResponse
 ): CountryPreviewAndSearchingDTO => {
-  return createCountryPreviewAndSearchingDTO(
-    data.name.common,
-    data.independent,
-    data.unMember,
-    data.region,
-    data.subregion,
-    data.area,
-    data.population,
-    data.flags.png
-  );
+  return {
+    name: data.name.common,
+    isIndependent: data.independent,
+    isUNMember: data.unMember,
+    region: data.region,
+    subregion: data.subregion,
+    area: data.area,
+    population: data.population,
+    flag: data.flags.png,
+  };
 };

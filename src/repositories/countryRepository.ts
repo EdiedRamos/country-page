@@ -1,5 +1,7 @@
-import { CountryPreviewAndSearchingDTO } from "@/dtos";
+import { CountryInformationDTO, CountryPreviewAndSearchingDTO } from "@/dtos";
+
 import { countryAPI } from "@/services/api/countryAPI";
+import { countryInformationMapper } from "@/services/mappers/country/countryInformationMapper";
 import { previewAndSearchingMapper } from "@/services/mappers";
 
 class CountryRepository {
@@ -12,6 +14,14 @@ class CountryRepository {
     return previewAndSearchingResponse.map((previewAndSearching) =>
       previewAndSearchingMapper(previewAndSearching)
     );
+  }
+
+  public async getCountryInformation(
+    countryName: string
+  ): Promise<CountryInformationDTO | null> {
+    const countryInformation = await countryAPI.fetchCountryByName(countryName);
+    if (!countryInformation) return null;
+    return countryInformationMapper(countryInformation);
   }
 }
 

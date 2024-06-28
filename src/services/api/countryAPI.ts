@@ -16,10 +16,12 @@ class CountryAPI {
     }
   }
 
-  public async fetchCountryByName(): Promise<CountryInformation | null> {
+  public async fetchCountryByName(
+    name: string
+  ): Promise<CountryInformation | null> {
     try {
       const response = await axiosInstance.get<CountryInformation>(
-        "name/colombia?fields=name,flags,subregion,area,population,languages,currencies,continents,borders,capital"
+        `name/${name}?fields=name,flags,subregion,area,population,languages,currencies,continents,borders,capital`
       );
       return response.data;
     } catch {
