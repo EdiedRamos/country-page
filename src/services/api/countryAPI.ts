@@ -1,4 +1,5 @@
-import type { PreviewAndSearchingResponse } from "@/types";
+import type { CountryInformation, PreviewAndSearchingResponse } from "@/types";
+
 import { axiosInstance } from "@/utils";
 
 class CountryAPI {
@@ -7,7 +8,18 @@ class CountryAPI {
   > {
     try {
       const response = await axiosInstance.get<PreviewAndSearchingResponse[]>(
-        "https://restcountries.com/v3.1/all?fields=name,flags,independent,unMember,region,subregion,area,population"
+        "all?fields=name,flags,independent,unMember,region,subregion,area,population"
+      );
+      return response.data;
+    } catch {
+      return null;
+    }
+  }
+
+  public async fetchCountryByName(): Promise<CountryInformation | null> {
+    try {
+      const response = await axiosInstance.get<CountryInformation>(
+        "name/colombia?fields=name,flags,subregion,area,population,languages,currencies,continents,borders,capital"
       );
       return response.data;
     } catch {
