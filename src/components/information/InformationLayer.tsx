@@ -55,12 +55,12 @@ export const InformationLayer = () => {
       <InfoDetail title="Language" value={country.languages.join(", ")} />
       <InfoDetail title="Currencies" value={country.currencies.join(", ")} />
       <InfoDetail
-        className="border-b-2"
+        className={country.borders.length > 0 ? "border-b-2" : ""}
         title="Continents"
         value={country.continents.join(", ")}
       />
 
-      <NeighbouringCountries />
+      <NeighbouringCountries borders={country.borders} />
     </section>
   );
 };

@@ -1,6 +1,12 @@
 import { CountryPreview } from "./CountryPreview";
 
-export const NeighbouringCountries = () => {
+interface Props {
+  borders: string[];
+}
+
+export const NeighbouringCountries = ({ borders }: Props) => {
+  if (borders.length === 0) return <></>;
+
   return (
     <>
       <p className="px-5 text-cc-gray mt-5 text-cs-100">
