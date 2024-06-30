@@ -6,6 +6,7 @@ export const previewAndSearchingMapper = (
 ): CountryPreviewAndSearchingDTO => {
   return {
     name: data.name.common,
+    officialName: data.name.official,
     isIndependent: data.independent,
     isUNMember: data.unMember,
     region: data.region,

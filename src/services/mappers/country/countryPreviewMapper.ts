@@ -6,6 +6,7 @@ export function countryPreviewMapper(
 ): CountryPreviewDTO {
   return {
     name: data.name.common,
+    officialName: data.name.official,
     flag: data.flags.svg,
   };
 }

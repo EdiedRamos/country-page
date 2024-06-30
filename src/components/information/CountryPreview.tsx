@@ -4,11 +4,11 @@ import { useNavigate } from "react-router";
 
 interface Props extends CountryPreviewDTO {}
 
-export const CountryPreview = ({ name, flag }: Props) => {
+export const CountryPreview = ({ name, flag, officialName }: Props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(URLS.information.replace(":country", name));
+    navigate(URLS.information.replace(":country", officialName));
     scrollTo(0, 0);
   };
 

@@ -15,7 +15,7 @@ export const TableBody = ({ countries }: Props) => {
         <tr
           key={country.name}
           onClick={() =>
-            navigate(URLS.information.replace(":country", country.name))
+            navigate(URLS.information.replace(":country", country.officialName))
           }
           className="text-cc-light border-2 hover:bg-cc-dark hover:cursor-pointer"
         >
