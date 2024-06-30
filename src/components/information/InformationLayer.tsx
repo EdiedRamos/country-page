@@ -28,7 +28,7 @@ export const InformationLayer = () => {
       <div className="mx-auto max-w-[260px] h-[196px] -mt-[48px]">
         <img
           src={country.flag}
-          className="w-full h-full object-contain rounded-md"
+          className="w-full h-full object-contain rounded-md bg-cc-dark"
           alt={`${country.name.common} flag`}
         />
       </div>
