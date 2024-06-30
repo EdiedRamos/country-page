@@ -17,7 +17,11 @@ export const CountryPreview = ({ name, flag }: Props) => {
       onClick={handleClick}
       className="w-20 flex flex-col items-center gap-2 hover:opacity-55 hover:cursor-pointer hover:transition-all"
     >
-      <img className="w-20 rounded-md" src={flag} alt={`${name} falg`} />
+      <img
+        className="bg-cc-dark p-1 object-contain w-20 h-20 rounded-md"
+        src={flag}
+        alt={`${name} falg`}
+      />
       <p className="text-cs-50 text-cc-light">{name}</p>
     </div>
   );
